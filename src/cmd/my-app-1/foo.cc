@@ -2,7 +2,7 @@ module;
 
 #include <iostream>
 
-export module foo;
+export module my_app_1.foo;
 namespace foo {
   export int FooFunc() {
     using namespace std;

@@ -35,7 +35,7 @@ USE_CXX_VERSION=2b
 
 MY_C_COMMON_FLAGS += -Werror -Wall -Wextra -pedantic
 MY_C_STANDARD := -std=c17
-MY_CXX_STANDARD := -std=c++${USE_CXX_VERSION} -fmodules-ts
+MY_CXX_STANDARD := -std=c++${USE_CXX_VERSION} -fmodules-ts '-fmodule-mapper=|@g++-mapper-server -r'$(R_TARGET_DIR)/gcm
 
 # flags pass to CC only
 MY_CFLAGS:= $(MY_C_COMMON_FLAGS) $(DEBUG_FLAGS) $(MY_C_STANDARD)
