@@ -21,18 +21,16 @@ ERROR() {
     echo -e "${RED}Error: ${msg}${NC}"
 }
 
+# export C_INCLUDE_PATH=${DEPS_INSTALL_DIR}/include
+# export CPLUS_INCLUDE_PATH=${C_INCLUDE_PATH}
+# export LD_LIBRARY_PATH=${DEPS_INSTALL_DIR}/lib
 export DOWNLOAD_DIR=${TARGET_DIR}/downloads/
 mkdir -p ${DOWNLOAD_DIR}
 
 DEPS_NAME=$1
 DEPS_SCRIPT=${PROJECT_ROOT}/deps/deps-${DEPS_NAME}.sh
 
-# unset before include spec file
-unset URL
-unset FILE_NAME
-unset FILE_PATH
-unset SHA256
-unset SOURCE_FOLDER
+source ${PROJECT_ROOT}/deps/deps-functions.sh
 
 echo "Try installing ${DEPS_NAME}"
 echo "Checking deps spec file ${DEPS_SCRIPT}"
@@ -78,6 +76,7 @@ if [ ${NEED_DOWNLOAD} = "yes" ]; then
    fi
 fi
 
+set -x
 echo "Decompressing ${FILE_PATH} ..."
 d_decompress
 echo "configure ..."
@@ -88,3 +87,4 @@ echo "install ..."
 d_install
 echo "clean up deps source folder ${SOURCE_FOLDER} ..."
 d_cleanup
+set +x
