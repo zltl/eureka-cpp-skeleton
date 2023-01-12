@@ -22,7 +22,6 @@ d_configure() {
     OLD_DIR=$PWD
     cd ${SOURCE_FOLDER}
 
-    echo "./bootstrap.sh --prefix=${DEPS_INSTALL_DIR}"
     ./bootstrap.sh --prefix=${DEPS_INSTALL_DIR}
 
     cd $OLD_DIR
@@ -33,10 +32,8 @@ d_build() {
     cd ${SOURCE_FOLDER}
 
     if [ -x ${RELEASE} ]; then
-        echo "./b2 install threading=multi variant=debug link=static"
         ./b2 install threading=multi variant=debug link=static
     else
-        echo "./b2 threading=multi variant=release link=static"
         ./b2 install threading=multi variant=release link=static
     fi
 
