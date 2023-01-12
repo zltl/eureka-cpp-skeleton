@@ -22,7 +22,7 @@ EXTRA_LIB_FLAG=-L$(DEPS_INSTALL_DIR)/lib
 
 $(shell mkdir -p $(R_TARGET_DIR))
 $(shell mkdir -p $(R_TARGET_DIR)/deps/{include,lib})
-
+$(shell mkdir -p $(R_TARGET_DIR)/gcm)
 ifneq ($(SANITIZE),)
 	ifneq ($(DEBUG_FLAGS),)
 		DEBUG_FLAGS += -g
