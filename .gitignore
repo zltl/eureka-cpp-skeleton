@@ -32,3 +32,5 @@
 *.app
 
 /target
+*.gcm
+/gcm.cache
