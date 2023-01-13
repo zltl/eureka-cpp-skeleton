@@ -3,6 +3,8 @@
 set -e
 
 # exported variables:
+#   CC - gcc/clang
+#   CXX - g++/clang++
 #   PROJECT_ROOT - source code folder path
 #   RELEASE - seted if build as release mode
 #   TARGET_DIR $PROJECT_ROOT/target or anypath that user specified
@@ -24,7 +26,7 @@ ERROR() {
 # export C_INCLUDE_PATH=${DEPS_INSTALL_DIR}/include
 # export CPLUS_INCLUDE_PATH=${C_INCLUDE_PATH}
 # export LD_LIBRARY_PATH=${DEPS_INSTALL_DIR}/lib
-export DOWNLOAD_DIR=${TARGET_DIR}/downloads/
+export DOWNLOAD_DIR=${TARGET_DIR}/downloads
 mkdir -p ${DOWNLOAD_DIR}
 
 DEPS_NAME=$1
@@ -88,3 +90,4 @@ d_install
 echo "clean up deps source folder ${SOURCE_FOLDER} ..."
 d_cleanup
 set +x
+

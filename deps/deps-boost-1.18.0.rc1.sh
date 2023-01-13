@@ -7,22 +7,15 @@ FILE_PATH=${DOWNLOAD_DIR}/${FILE_NAME}
 SOURCE_FOLDER=${R_TARGET_DIR}/boost_1_81_0
 
 d_check_rebuild() {
-    if [ -f ${DEPS_INSTALL_DIR}/include/boost/config.hpp ]; then
-        echo -n "already build"
-    else
-        echo -n ""
-    fi
-}
-
-d_decompress() {
-    unzip -q -o ${FILE_PATH} -d ${R_TARGET_DIR}
+    check_file_exists ${DEPS_INSTALL_DIR}/include/boost/config.hpp
 }
 
 d_configure() {
     OLD_DIR=$PWD
     cd ${SOURCE_FOLDER}
 
-    ./bootstrap.sh --prefix=${DEPS_INSTALL_DIR}
+    # CC are gcc or clang
+    ./bootstrap.sh --prefix=${DEPS_INSTALL_DIR} --with-toolset=${CC}
 
     cd $OLD_DIR
 }
@@ -31,12 +24,11 @@ d_build() {
     OLD_DIR=$PWD
     cd ${SOURCE_FOLDER}
 
-    if [ -x ${RELEASE} ]; then
-        ./b2 install threading=multi variant=debug link=static
+    if [ -z ${RELEASE} ]; then
+        ./b2 install threading=multi variant=debug link=static toolset=${CC}
     else
         ./b2 install threading=multi variant=release link=static
     fi
-
 
     cd $OLD_DIR
 }
@@ -44,8 +36,4 @@ d_build() {
 d_install() {
     # ignore
     echo ""
-}
-
-d_cleanup() {
-    rm -rf ${SOURCE_FOLDER}
 }
