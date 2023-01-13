@@ -25,7 +25,7 @@ d_build() {
     cd ${SOURCE_FOLDER}
 
     if [ -z ${RELEASE} ]; then
-        ./b2 install threading=multi variant=debug link=static toolset=${CC}
+        ./b2 install threading=multi variant=debug toolset=${CC}
     else
         ./b2 install threading=multi variant=release link=static
     fi

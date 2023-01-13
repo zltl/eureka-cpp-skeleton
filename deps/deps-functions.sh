@@ -22,8 +22,10 @@ d_check_rebuild() {
 
 d_decompress() {
     echo "Use default d_decompress()"
-    echo /home/ltl/src/eureka-cpp-skeleton/target/downloads/fmt-9.1.0.zip | grep -q -e '\.zip$'
+    set +e
+    echo ${FILE_PATH} | grep -q -e '\.zip$'
     rflag=$?
+    set -e
     if [ ${rflag} -eq 0 ]; then
         unzip -q -o ${FILE_PATH} -d ${R_TARGET_DIR}
     else
