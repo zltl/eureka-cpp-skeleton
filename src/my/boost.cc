@@ -4,7 +4,7 @@ module;
 #include <cmath>
 #include <iostream>
 
-export module boost_im;
+export module my.boost;
 export void BoostExample() {
   boost::chrono::system_clock::time_point start = boost::chrono::system_clock::now();
 
@@ -14,5 +14,3 @@ export void BoostExample() {
   boost::chrono::duration<double> sec = boost::chrono::system_clock::now() - start;
   std::cout << "took " << sec.count() << " seconds\n";
 }
-
-

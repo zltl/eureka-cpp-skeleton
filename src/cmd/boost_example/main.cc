@@ -1,4 +1,4 @@
-import boost_im;
+import my.boost;
 
 int main() {
   BoostExample();

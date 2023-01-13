@@ -1,4 +1,4 @@
-.PHONY: deps clean src
+.PHONY: deps clean src my boost_example my_example
 
 .ONESHELL:
 
@@ -56,13 +56,14 @@ export
 
 DEPS_GET:= $(PROJECT_ROOT)/deps/deps.sh
 
-all: src
+all: boost_example my_example
 
-
-src:
-	$(MAKE) -C src
-src/clean:
-	$(MAKE) clean -C src
+my: deps
+	$(MAKE) -C src/my
+boost_example: deps my
+	$(MAKE) -C src/cmd/boost_example
+my_example: deps my
+	$(MAKE) -C src/cmd/my_example
 
 
 deps:
@@ -72,5 +73,8 @@ deps:
 	# $(DEPS_GET) fmt-9.1.0
 
 
-clean: src/clean
+clean:
+	$(MAKE) clean -C src/my
+	$(MAKE) clean -C src/cmd/boost_example
+	$(MAKE) clena -C src/cmd/my
 
