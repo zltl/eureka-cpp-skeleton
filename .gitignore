@@ -34,3 +34,4 @@
 /target
 *.gcm
 gcm.cache
+compile_commands.json
