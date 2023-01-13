@@ -76,5 +76,5 @@ deps:
 clean:
 	$(MAKE) clean -C src/my
 	$(MAKE) clean -C src/cmd/boost_example
-	$(MAKE) clena -C src/cmd/my
+	$(MAKE) clean -C src/cmd/my_example
 

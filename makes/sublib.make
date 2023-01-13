@@ -1,3 +1,5 @@
+.PHONY: all clean
+
 CURR_DIR=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 sub_name = $(shell basename $(CURR_DIR))
 
@@ -18,3 +20,7 @@ $(OBJ_DIR)/%.cc.o: %.cc
 			-c $< -o $@
 $(R_TARGET_DIR)/lib$(sub_name).a: $(objs_cc)
 	$(AR) rcs $@ $^
+
+clean:
+	rm -rf $(OBJ_DIR)
+	rm -rf $(R_TARGET_DIR)/lib$(sub_name).a
