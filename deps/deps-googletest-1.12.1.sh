@@ -24,7 +24,6 @@ d_configure() {
     cd build
     cmake -DCMAKE_INSTALL_PREFIX=${DEPS_INSTALL_DIR} \
           -DCMAKE_BUILD_TYPE=${DBG} \
-          -DBUILD_SHARED_LIBS=ON \
           ..
     cd ..
 

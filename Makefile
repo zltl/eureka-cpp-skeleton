@@ -67,6 +67,7 @@ my_example: deps my
 
 
 deps:
+	$(DEPS_GET) googletest-1.12.1
 	$(DEPS_GET) boost-1.18.0.rc1
 	# $(DEPS_GET) openssl-3.0.7
 	# $(DEPS_GET) spdlog-1.11.0
