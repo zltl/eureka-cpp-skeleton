@@ -48,8 +48,8 @@ MY_CXX_STANDARD := -std=c++${USE_CXX_VERSION}
 MY_CFLAGS:= $(MY_C_COMMON_FLAGS) $(DEBUG_FLAGS) $(MY_C_STANDARD)
 # flags pass to CXX only
 MY_CXXFLAGS:= $(MY_C_COMMON_FLAGS) $(MY_CXX_STANDARD) \
-	      -fcompare-debug-second \
 	      -fmodules-ts '-fmodule-mapper=|@g++-mapper-server -r'$(R_TARGET_DIR)/pcm
+	      # -fcompare-debug-second \
 
 # export all variables that defined
 export
