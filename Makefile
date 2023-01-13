@@ -39,7 +39,7 @@ endif
 # use C++23
 USE_CXX_VERSION=23
 
-# MY_C_COMMON_FLAGS += -Werror -Wall -Wextra -pedantic
+MY_C_COMMON_FLAGS += -Werror -Wall -Wextra -pedantic
 MY_C_STANDARD := -std=c17
 MY_CXX_STANDARD := -std=c++${USE_CXX_VERSION}
 

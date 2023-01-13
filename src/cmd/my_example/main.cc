@@ -1,5 +1,3 @@
 import my.foo;
 
-int main() {
-  foo::FooFunc();
-}
+int main() { foo::FooFunc(); }

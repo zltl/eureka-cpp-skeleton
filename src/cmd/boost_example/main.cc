@@ -1,5 +1,5 @@
 import my.boost;
 
 int main() {
-  BoostExample();
+  my::xboost::BoostExample();
 }
