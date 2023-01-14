@@ -56,7 +56,7 @@ export
 
 DEPS_GET:= $(PROJECT_ROOT)/deps/deps.sh
 
-all: boost_example my_example
+all: boost_example my_example options_example
 
 my: deps
 	$(MAKE) -C src/my
@@ -64,7 +64,8 @@ boost_example: deps my
 	$(MAKE) -C src/cmd/boost_example
 my_example: deps my
 	$(MAKE) -C src/cmd/my_example
-
+options_example: deps
+	$(MAKE) -C src/cmd/options_example
 
 deps:
 	$(DEPS_GET) googletest-1.12.1
