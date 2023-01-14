@@ -19,7 +19,7 @@ int main(int argc, const char** argv) {
   int opt;
   po::options_description desc("Allowed options");
 
-  // ./target/debug/options_example --optimization 4 -I foo -I another/path \
+  // ./target/debug/options_example --optimization 4 -I foo -I another/path
   //                                --include-path third/include/path a.cpp b.cpp
   desc.add_options()                                              //
       ("help", "produce help message")                            //
