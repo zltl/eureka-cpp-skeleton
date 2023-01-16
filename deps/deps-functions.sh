@@ -43,14 +43,14 @@ d_configure() {
 #        DBG=Debug
 #    fi
 
-    if [ -x ./configure ]; then
-        ./configure --prefix=${DEPS_INSTALL_DIR}
-    elif [ -f ./CMakeLists.txt ]; then
+    if [ -f ./CMakeLists.txt ]; then
         # try cmake
         mkdir -p build
         cd build
         cmake -DCMAKE_INSTALL_PREFIX=${DEPS_INSTALL_DIR} -DCMAKE_BUILD_TYPE=${DBG}  ..
         cd ..
+    elif [ -x ./configure ]; then
+        ./configure --prefix=${DEPS_INSTALL_DIR}
     fi
     cd $OLD_DIR
 }
@@ -65,15 +65,15 @@ d_build() {
 #        DBG=Debug
 #    fi
 
-    if [ -f Makefile ]; then
-        make -j $(nproc)
-    else
+    # prefer cmake
+    if [ -f CMakeLists.txt ]; then
         # for cmake
         cd build
         cmake --build . --config ${DBG}
         cd ..
+    elif [ -f Makefile ]; then
+        make -j $(nproc)
     fi
-
     cd $OLD_DIR
 }
 
@@ -87,13 +87,14 @@ d_install() {
         DBG=Debug
     fi
 
-    if [ -f Makefile ]; then
-        make install
-    else
+    # prefer cmake
+    if [ -f CMakeLists.txt ]; then
         # for cmake
         cd build
         cmake --install . --config ${DBG}
         cd ..
+    elif [ -f Makefile ]; then
+        make install
     fi
 
     cd $OLD_DIR

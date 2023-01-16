@@ -37,7 +37,7 @@ ifneq ($(SANITIZE),)
 endif
 
 # use C++23
-USE_CXX_VERSION=23
+USE_CXX_VERSION=2b
 
 MY_C_COMMON_FLAGS += -Werror -Wall -Wextra -pedantic
 MY_C_STANDARD := -std=c17
@@ -73,6 +73,7 @@ deps:
 	# $(DEPS_GET) openssl-3.0.7
 	# $(DEPS_GET) spdlog-1.11.0
 	$(DEPS_GET) fmt-9.1.0
+	$(DEPS_GET) double-conversion-3.2.1
 
 
 clean:
