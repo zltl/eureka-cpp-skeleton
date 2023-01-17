@@ -1,4 +1,4 @@
-.PHONY: deps clean src my boost_example my_example test build run_test
+.PHONY: deps clean src my boost_example my_example test build run_test benchmark run_benchmark
 
 .ONESHELL:
 
@@ -56,7 +56,7 @@ export
 
 DEPS_GET:= $(PROJECT_ROOT)/deps/deps.sh
 
-all: build test
+all: build test benchmark
 
 build: boost_example my_example options_example
 
@@ -73,15 +73,33 @@ test: build
 	$(MAKE) -C tests
 
 run_test: test
-	$(R_TARGET_DIR)/tests/my_unit_test
+	for r in $$(ls $(R_TARGET_DIR)/tests/); do
+		fullr=$(R_TARGET_DIR)/tests/$$r
+		if [ -x $$fullr ]; then
+			$$fullr
+		fi
+	done
+
+benchmark: build
+	$(MAKE) -C benchmarks
+
+run_benchmark: benchmark
+	for r in $$(ls $(R_TARGET_DIR)/benchmarks/); do
+		fullr=$(R_TARGET_DIR)/benchmarks/$$r
+		if [ -x $$fullr ]; then
+			$$fullr
+		fi
+	done
 
 deps:
 	$(DEPS_GET) googletest-1.12.1
+	$(DEPS_GET) benchmark-1.7.1
 	$(DEPS_GET) boost-1.18.0.rc1
 	# $(DEPS_GET) openssl-3.0.7
 	# $(DEPS_GET) spdlog-1.11.0
 	$(DEPS_GET) fmt-9.1.0
-	$(DEPS_GET) double-conversion-3.2.1
+	# $(DEPS_GET) double-conversion-3.2.1
+
 
 clean:
 	$(MAKE) clean -C src/my
