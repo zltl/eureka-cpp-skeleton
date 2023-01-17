@@ -5,7 +5,7 @@ $(shell mkdir -p $(OBJ_DIR))
 
 all: $(R_TARGET_DIR)/options_example
 
-MODECFLAGS := -fmodules-ts -static
+MODECFLAGS := -static
 
 $(R_TARGET_DIR)/options_example: $(OBJ_DIR)/main.cc.o $(OBJ_DIR)/options.cc.o
 	$(CXX) $(MY_CXXFLAGS) $(EXTRA_LIB_FLAG) $^ -o $@ -lboost_program_options -lfmt -o $@

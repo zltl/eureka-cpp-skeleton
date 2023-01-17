@@ -5,7 +5,7 @@ $(shell mkdir -p $(OBJ_DIR))
 
 all: $(R_TARGET_DIR)/boost_example
 
-MODECFLAGS := -fmodules-ts -static
+MODECFLAGS := -static
 
 $(R_TARGET_DIR)/boost_example: $(OBJ_DIR)/main.cc.o $(R_TARGET_DIR)/libmy.a
 	$(CXX) $(MY_CXXFLAGS) $(EXTRA_LIB_FLAG) $^ -o $@ $(R_TARGET_DIR)/libmy.a -lboost_chrono -lfmt

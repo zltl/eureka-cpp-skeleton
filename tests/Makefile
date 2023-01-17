@@ -7,7 +7,7 @@ O:=$(OBJ_DIR)
 
 all: $(OBJ_DIR)/my_unit_test
 
-MODECFLAGS := -fmodules-ts -static
+MODECFLAGS := -static
 
 my_unit_object := $(O)/basic_test.cc.o \
 		  $(O)/fixture_test.cc.o \

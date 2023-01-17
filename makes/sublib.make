@@ -10,9 +10,6 @@ objs_cc = $(patsubst %.cc,$(OBJ_DIR)/%.cc.o,$(sources_c))
 
 $(shell mkdir -p $(OBJ_DIR))
 
-CMODFLAG := -fmodules-ts 
-# -flang-info-include-translate-not
-
 all: $(R_TARGET_DIR)/lib$(sub_name).a
 
 $(OBJ_DIR)/%.cc.o: %.cc
