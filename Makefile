@@ -1,4 +1,4 @@
-.PHONY: deps clean src my boost_example my_example
+.PHONY: deps clean src my boost_example my_example test build run_test
 
 .ONESHELL:
 
@@ -56,7 +56,9 @@ export
 
 DEPS_GET:= $(PROJECT_ROOT)/deps/deps.sh
 
-all: boost_example my_example options_example
+all: build test
+
+build: boost_example my_example options_example
 
 my: deps
 	$(MAKE) -C src/my
@@ -67,6 +69,12 @@ my_example: deps my
 options_example: deps
 	$(MAKE) -C src/cmd/options_example
 
+test: build
+	$(MAKE) -C tests
+
+run_test: test
+	$(R_TARGET_DIR)/tests/my_unit_test
+
 deps:
 	$(DEPS_GET) googletest-1.12.1
 	$(DEPS_GET) boost-1.18.0.rc1
@@ -75,9 +83,9 @@ deps:
 	$(DEPS_GET) fmt-9.1.0
 	$(DEPS_GET) double-conversion-3.2.1
 
-
 clean:
 	$(MAKE) clean -C src/my
 	$(MAKE) clean -C src/cmd/boost_example
 	$(MAKE) clean -C src/cmd/my_example
-
+	$(MAKE) clean -C src/cmd/options_example
+	$(MAKE) clean -C tests
