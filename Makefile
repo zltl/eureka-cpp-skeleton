@@ -109,8 +109,8 @@ deps:
 	$(DEPS_GET) benchmark-1.7.1
 	$(DEPS_GET) boost-1.18.0.rc1
 	# $(DEPS_GET) openssl-3.0.7
-	# $(DEPS_GET) spdlog-1.11.0
 	$(DEPS_GET) fmt-9.1.0
+	# $(DEPS_GET) spdlog-1.11.0
 	# $(DEPS_GET) double-conversion-3.2.1
 
 clean:
