@@ -1,4 +1,6 @@
-.PHONY: deps clean src my boost_example my_example test build run_test benchmark run_benchmark
+.PHONY: deps clean src my boost_example my_example \
+	test build run_test benchmark run_benchmark \
+	asio_example
 
 # Use one shell in targets. Multiple lines of commands in a target run
 # in one shell, so we can use the result of previous commands.
@@ -70,7 +72,7 @@ DEPS_GET:= $(PROJECT_ROOT)/deps/deps.sh
 
 all: build test benchmark
 
-build: boost_example my_example options_example
+build: boost_example my_example options_example asio_example
 
 # libmy.a
 my: deps
@@ -82,6 +84,8 @@ my_example: deps my
 	$(MAKE) -C src/cmd/my_example
 options_example: deps
 	$(MAKE) -C src/cmd/options_example
+asio_example: deps
+	$(MAKE) -C src/cmd/asio_example
 
 test: build
 	$(MAKE) -C tests
@@ -118,4 +122,6 @@ clean:
 	$(MAKE) clean -C src/cmd/boost_example
 	$(MAKE) clean -C src/cmd/my_example
 	$(MAKE) clean -C src/cmd/options_example
+	$(MAKE) clean -C src/cmd/asio_example
 	$(MAKE) clean -C tests
+
