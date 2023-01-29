@@ -31,7 +31,7 @@ DEPS_INSTALL_DIR = $(R_TARGET_DIR)/deps
 # add deps install location, and ./src/ into include path.
 EXTRA_INCLUDE_FLAG=-I$(DEPS_INSTALL_DIR)/include -I$(PROJECT_ROOT)/src
 # add deps install location into link path.
-EXTRA_LIB_FLAG=-L$(DEPS_INSTALL_DIR)/lib -L$(DEPS_INSTALL_DIR)/lib64
+EXTRA_LIB_FLAG=-L$(DEPS_INSTALL_DIR)/lib -L$(DEPS_INSTALL_DIR)/lib64 -L$(R_TARGET_DIR)
 
 # create location, avoid "no such file" error.
 $(shell mkdir -p $(R_TARGET_DIR))
@@ -51,7 +51,7 @@ endif
 USE_CXX_VERSION=2b
 
 # strict mode, for C and C++
-MY_C_COMMON_FLAGS += -Werror -Wall -Wextra -pedantic
+MY_C_COMMON_FLAGS += -Werror -Wall -Wextra -pedantic -fdiagnostics-color=always
 # use c17, just for C
 MY_C_STANDARD := -std=c17
 # use C++23, just for C++
