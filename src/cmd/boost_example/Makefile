@@ -1,19 +1,35 @@
+# Build every files xxyyzz.cc to xxyyzz
+# Asume that every xxyyzz.cc files have a main function.
+
 .PHONY: all clean
+
+CURR_DIR=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+sources_c = $(wildcard *.cc)
+exes_cc = $(patsubst %.cc,$(R_TARGET_DIR)/boost_%_example,$(sources_c))
+objs_cc = $(patsubst %.cc,$(OBJ_DIR)/%.cc.o,$(sources_c))
 
 OBJ_DIR:=$(R_TARGET_DIR)/cmd/boost_example
 $(shell mkdir -p $(OBJ_DIR))
 
-all: $(R_TARGET_DIR)/boost_example
+mlibs = -lmy \
+	-lboost_log_setup \
+	-lboost_log \
+	-lboost_filesystem \
+	-lboost_thread \
+	-lboost_chrono \
+	-lfmt
 
-MODECFLAGS := -static
+all: $(exes_cc)
 
-$(R_TARGET_DIR)/boost_example: $(OBJ_DIR)/main.cc.o $(R_TARGET_DIR)/libmy.a
-	$(CXX) $(MY_CXXFLAGS) $(EXTRA_LIB_FLAG) $^ -o $@ $(R_TARGET_DIR)/libmy.a -lboost_chrono -lfmt
+# MODECFLAGS := -static
+
+$(R_TARGET_DIR)/boost_%_example :$(OBJ_DIR)/%.cc.o
+	$(CXX) $(MY_CXXFLAGS) $(EXTRA_LIB_FLAG) $^ -o $@ $(mlibs)
 
 $(OBJ_DIR)/%.cc.o: %.cc
 	$(CXX) $(MY_CXXFLAGS) $(EXTRA_INCLUDE_FLAG) $(MODECFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(R_TARGET_DIR)/boost_example
+	rm -rf $(exes_cc)
 	rm -rf $(OBJ_DIR)
 
