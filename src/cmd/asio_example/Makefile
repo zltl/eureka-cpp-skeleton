@@ -13,8 +13,6 @@ $(shell mkdir -p $(OBJ_DIR))
 
 all: $(exes_cc)
 
-MODECFLAGS := -static
-
 $(R_TARGET_DIR)/asio_%_example :$(OBJ_DIR)/%.cc.o
 	$(CXX) $(MY_CXXFLAGS) $(EXTRA_LIB_FLAG) $^ -o $@ -lboost_chrono
 
