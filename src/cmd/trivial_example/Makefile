@@ -5,15 +5,16 @@
 
 CURR_DIR=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 sources_c = $(wildcard *.cc)
-exes_cc = $(patsubst %.cc,$(R_TARGET_DIR)/boost_%_example,$(sources_c))
+exes_cc = $(patsubst %.cc,$(R_TARGET_DIR)/trivial_%_example,$(sources_c))
 objs_cc = $(patsubst %.cc,$(OBJ_DIR)/%.cc.o,$(sources_c))
+mylibs = $(wildcard $(R_TARGET_DIR)/*.a)
 
-OBJ_DIR:=$(R_TARGET_DIR)/cmd/boost_example
+OBJ_DIR:=$(R_TARGET_DIR)/cmd/trivial_example
 $(shell mkdir -p $(OBJ_DIR))
 
 mlibs = -lmy \
-	-lboost_log_setup \
-	-lboost_log \
+	-llogging \
+	-lspdlog \
 	-lboost_filesystem \
 	-lboost_thread \
 	-lboost_chrono \
@@ -23,7 +24,7 @@ all: $(exes_cc)
 
 # MODECFLAGS := -static
 
-$(R_TARGET_DIR)/boost_%_example :$(OBJ_DIR)/%.cc.o
+$(R_TARGET_DIR)/trivial_%_example :$(OBJ_DIR)/%.cc.o $(mylibs)
 	$(CXX) $(MY_CXXFLAGS) $(EXTRA_LIB_FLAG) $^ -o $@ $(mlibs)
 
 $(OBJ_DIR)/%.cc.o: %.cc
