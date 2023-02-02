@@ -13,8 +13,10 @@ OBJ_DIR:=$(R_TARGET_DIR)/cmd/trivial_example
 $(shell mkdir -p $(OBJ_DIR))
 
 mlibs = -lmy \
-	-llogging \
+	-llog \
 	-lspdlog \
+	-lboost_log \
+	-lboost_log_setup \
 	-lboost_filesystem \
 	-lboost_thread \
 	-lboost_chrono \

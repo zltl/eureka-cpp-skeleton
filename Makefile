@@ -46,11 +46,13 @@ ifneq ($(SANITIZE),)
 	DEBUG_FLAGS += -fsanitize=address -lasan
 endif
 
-# use C++23
-USE_CXX_VERSION=2b
+# use C++20
+USE_CXX_VERSION=20
 
 # strict mode, for C and C++
-MY_C_COMMON_FLAGS += -Werror -Wall -Wextra -pedantic
+# MY_C_COMMON_FLAGS += -Werror -Wall -Wextra -pedantic
+# Discard -Werror, C++23 not support on gcc13 well.
+MY_C_COMMON_FLAGS += -Wall -Wextra -pedantic
 # use c17, just for C
 MY_C_STANDARD := -std=c17
 # use C++23, just for C++
@@ -87,8 +89,8 @@ deps:
 	$(DEPS_GET) benchmark-1.7.1
 	$(DEPS_GET) boost-1.18.0.rc1
 	# $(DEPS_GET) openssl-3.0.7
-	$(DEPS_GET) fmt-9.1.0
-	$(DEPS_GET) spdlog-1.11.0
+	# $(DEPS_GET) fmt-9.1.0
+	# $(DEPS_GET) spdlog-1.11.0
 	# $(DEPS_GET) double-conversion-3.2.1
 
 clean:

@@ -1,14 +1,14 @@
 module;
 
-#include <fmt/printf.h>
+#include <format>
 
 #include <iostream>
 
 export module my.foo;
 namespace foo {
 export int FooFunc() {
-  fmt::print("Don't {}\n", "panic");
   using namespace std;
+  cout << format("Don't {}\n", "panic")<< endl;
   cout << "on module foo, call FooFunc()" << endl;
   return 0;
 }
